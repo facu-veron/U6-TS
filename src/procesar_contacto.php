@@ -1,14 +1,16 @@
 <?php
 session_start();
 
+require_once 'lib/funciones.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-    $asunto = isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : '';
-    $mensaje = isset($_POST['mensaje']) ? htmlspecialchars($_POST['mensaje']) : '';
+    $datos = array();
+    foreach (array('nombre', 'email', 'asunto', 'mensaje') as $campo) {
+        $datos[$campo] = isset($_POST[$campo]) ? sanitizar_texto($_POST[$campo]) : '';
+    }
 
     // Validar campos
-    if (!empty($nombre) && !empty($email) && !empty($asunto) && !empty($mensaje)) {
+    if (validar_campos_requeridos($datos, array('nombre', 'email', 'asunto', 'mensaje'))) {
         // Aquí normalmente enviarías un email o guardarías en base de datos
         // Para este ejemplo, solo guardamos un mensaje de éxito
         

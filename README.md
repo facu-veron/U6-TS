@@ -18,6 +18,8 @@ tienda/
 ├── vaciar_carrito.php       # Script para vaciar carrito
 ├── procesar_compra.php      # Script para procesar compra
 ├── procesar_contacto.php    # Script para procesar contacto
+├── lib/
+│   └── funciones.php        # Lógica de negocio (testeada con PHPUnit)
 ├── css/
 │   └── estilos.css          # Estilos CSS
 └── images/
@@ -45,6 +47,32 @@ php -S localhost:8000
 #### Opción 2: Usando XAMPP/WAMP
 - Copiar la carpeta `tienda` a `htdocs/` (XAMPP) o `www/` (WAMP)
 - Acceder a: http://localhost/tienda/
+
+## Testing
+
+El proyecto tiene dos niveles de pruebas automatizadas, que también corren en GitHub Actions en cada push/PR:
+
+### Tests unitarios (PHPUnit)
+
+Prueban la lógica de negocio (`src/lib/funciones.php`): carrito, totales, validaciones y armado de pedidos.
+
+```bash
+composer install   # solo la primera vez
+composer test
+```
+
+Documentación completa: [docs/testing-phpunit.md](docs/testing-phpunit.md)
+
+### Tests end-to-end (Playwright)
+
+Prueban la aplicación completa desde el navegador (Chromium, Firefox y WebKit).
+
+```bash
+pnpm install       # solo la primera vez
+pnpm test:e2e
+```
+
+Documentación completa: [docs/testing-playwright.md](docs/testing-playwright.md)
 
 ## Funcionalidades
 

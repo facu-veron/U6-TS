@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'config/db.php';
+require_once 'lib/funciones.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $producto_id = isset($_POST['producto_id']) ? intval($_POST['producto_id']) : 0;
@@ -13,16 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $producto = $stmt->fetch();
 
         if ($producto) {
-            if (isset($_SESSION['carrito'][$producto_id])) {
-                $_SESSION['carrito'][$producto_id]['cantidad'] += $cantidad;
-            } else {
-                $_SESSION['carrito'][$producto_id] = array(
-                    'id'       => $producto['id'],
-                    'nombre'   => $producto['nombre'],
-                    'precio'   => $producto['precio'],
-                    'cantidad' => $cantidad
-                );
-            }
+            $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array();
+            $_SESSION['carrito'] = carrito_agregar($carrito, $producto, $cantidad);
 
             $_SESSION['mensaje'] = 'Producto agregado al carrito exitosamente';
             header('Location: carrito.php');

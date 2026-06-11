@@ -40,7 +40,7 @@ $productos = $stmt->fetchAll();
         </section>
 
         <section class="productos">
-            <h2>Productos Destacados</h2>
+            <h2>Listado de Productos Destacados</h2>
             <div class="productos-grid">
                 <?php foreach ($productos as $producto): ?>
                 <div class="producto-card" data-producto-id="<?php echo $producto['id']; ?>">

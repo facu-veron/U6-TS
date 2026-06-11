@@ -1,13 +1,10 @@
 <?php
 session_start();
 
+require_once 'lib/funciones.php';
+
 // Calcular total
-$total = 0;
-if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
-    foreach ($_SESSION['carrito'] as $item) {
-        $total += $item['precio'] * $item['cantidad'];
-    }
-}
+$total = carrito_total(isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array());
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -82,7 +79,7 @@ if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
 
             <div class="carrito-resumen">
                 <h2>Resumen del Pedido</h2>
-                <p class="total-items">Total de items: <span id="total-items"><?php echo array_sum(array_column($_SESSION['carrito'], 'cantidad')); ?></span></p>
+                <p class="total-items">Total de items: <span id="total-items"><?php echo carrito_contar_items($_SESSION['carrito']); ?></span></p>
                 <p class="total-precio">Total: <span id="total-precio">$<?php echo number_format($total, 2); ?></span></p>
                 <a href="checkout.php" class="btn-checkout" id="btn-checkout">Proceder al Pago</a>
                 <a href="productos.php" class="btn-continuar">Continuar Comprando</a>

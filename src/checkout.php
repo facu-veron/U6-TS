@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'lib/funciones.php';
+
 // Verificar que hay productos en el carrito
 if (!isset($_SESSION['carrito']) || count($_SESSION['carrito']) == 0) {
     header('Location: carrito.php');
@@ -8,10 +10,7 @@ if (!isset($_SESSION['carrito']) || count($_SESSION['carrito']) == 0) {
 }
 
 // Calcular total
-$total = 0;
-foreach ($_SESSION['carrito'] as $item) {
-    $total += $item['precio'] * $item['cantidad'];
-}
+$total = carrito_total($_SESSION['carrito']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,7 +104,7 @@ foreach ($_SESSION['carrito'] as $item) {
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="fecha_expiracion">Fecha de Expiración</label>
-                                <input type="text" id="fecha_expiracion" name="fecha_expiracion" placeholder="MM/AA">
+                                <input type="text" id="fecha_expiracion" name="fecha_expiracion"  placeholder="MM/AA" required>
                             </div>
 
                             <div class="form-group">
