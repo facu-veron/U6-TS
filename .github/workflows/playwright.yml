@@ -13,7 +13,7 @@ on:
 
 env:
   BASE_URL: http://localhost:8080
-  WEB_SERVER_COMMAND: pnpm start
+  WEB_SERVER_COMMAND: docker compose up --build
 
 jobs:
   unit:

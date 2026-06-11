@@ -16,4 +16,5 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Email *' }).click();
   await page.getByRole('textbox', { name: 'Email *' }).fill('Veron@gmail.com');
   await page.getByRole('button', { name: 'Enviar Mensaje' }).click();
+  await expect(page.locator('#mensaje-contacto')).toContainText('Gracias por contactarnos');
 });
