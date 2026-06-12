@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8082';
 // La app necesita PHP + MySQL: se levanta el stack de docker-compose,
 // no un servidor estático.
 const WEB_SERVER_COMMAND = process.env.WEB_SERVER_COMMAND || 'docker compose up --build';
