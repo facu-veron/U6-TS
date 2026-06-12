@@ -16,6 +16,9 @@ $productos = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechStore - Tienda de Tecnología</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -35,8 +38,10 @@ $productos = $stmt->fetchAll();
 
     <main class="container">
         <section class="hero">
+            <p class="hero-eyebrow">TechStore · Catálogo <?php echo date('Y'); ?></p>
             <h2>Bienvenido a TechStore</h2>
             <p>Los mejores productos tecnológicos al mejor precio</p>
+            <a href="productos.php" class="btn-hero">Ver productos</a>
         </section>
 
         <section class="productos">
@@ -44,8 +49,9 @@ $productos = $stmt->fetchAll();
             <div class="productos-grid">
                 <?php foreach ($productos as $producto): ?>
                 <div class="producto-card" data-producto-id="<?php echo $producto['id']; ?>">
+                    <p class="producto-ref"><span>REF-<?php echo str_pad($producto['id'], 3, '0', STR_PAD_LEFT); ?></span><span class="en-stock">En stock</span></p>
                     <div class="producto-imagen">
-                        <img src="images/placeholder.png" alt="<?php echo $producto['nombre']; ?>">
+                        <img src="images/placeholder.svg" alt="<?php echo $producto['nombre']; ?>">
                     </div>
                     <h3 class="producto-nombre"><?php echo $producto['nombre']; ?></h3>
                     <p class="producto-precio">$<?php echo number_format($producto['precio'], 2); ?></p>

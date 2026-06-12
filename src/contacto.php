@@ -7,6 +7,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - TechStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -42,22 +45,22 @@ session_start();
                 <form action="procesar_contacto.php" method="POST" id="form-contacto">
                     <div class="form-group">
                         <label for="nombre-contacto">Nombre *</label>
-                        <input type="text" id="nombre-contacto" name="nombre" required>
+                        <input type="text" id="nombre-contacto" name="nombre" placeholder="Tu nombre" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email-contacto">Email *</label>
-                        <input type="email" id="email-contacto" name="email" required>
+                        <input type="email" id="email-contacto" name="email" placeholder="tu@email.com" required>
                     </div>
 
                     <div class="form-group">
                         <label for="asunto">Asunto *</label>
-                        <input type="text" id="asunto" name="asunto" required>
+                        <input type="text" id="asunto" name="asunto" placeholder="¿Sobre qué nos escribes?" required>
                     </div>
 
                     <div class="form-group">
                         <label for="mensaje">Mensaje *</label>
-                        <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea>
                     </div>
 
                     <button type="submit" class="btn-enviar" id="btn-enviar-contacto">Enviar Mensaje</button>
@@ -73,18 +76,24 @@ session_start();
 
                 <div class="info-item">
                     <h3>Teléfono</h3>
-                    <p>+1 234 567 890</p>
+                    <p><a href="tel:+1234567890">+1 234 567 890</a></p>
                 </div>
 
                 <div class="info-item">
                     <h3>Email</h3>
-                    <p>info@techstore.com</p>
+                    <p><a href="mailto:info@techstore.com">info@techstore.com</a></p>
                 </div>
 
                 <div class="info-item">
                     <h3>Horario de Atención</h3>
-                    <p>Lunes a Viernes: 9:00 - 18:00<br>Sábado: 10:00 - 14:00<br>Domingo: Cerrado</p>
+                    <ul class="horario">
+                        <li><span>Lunes a Viernes</span><span>9:00 – 18:00</span></li>
+                        <li><span>Sábado</span><span>10:00 – 14:00</span></li>
+                        <li><span>Domingo</span><span>Cerrado</span></li>
+                    </ul>
                 </div>
+
+                <p class="info-nota">Respondemos dentro de las 24 horas hábiles.</p>
             </div>
         </div>
     </main>

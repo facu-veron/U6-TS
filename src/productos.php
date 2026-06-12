@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = array();
+}
+
 require_once 'config/db.php';
 
 $stmt = $pdo->query('SELECT * FROM productos WHERE activo = 1 ORDER BY id ASC');
@@ -12,6 +16,9 @@ $productos = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - TechStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -44,8 +51,9 @@ $productos = $stmt->fetchAll();
         <div class="productos-grid" id="lista-productos">
             <?php foreach ($productos as $producto): ?>
             <div class="producto-card" data-producto-id="<?php echo $producto['id']; ?>">
+                <p class="producto-ref"><span>REF-<?php echo str_pad($producto['id'], 3, '0', STR_PAD_LEFT); ?></span><span class="<?php echo $producto['stock'] > 0 ? 'en-stock' : 'sin-stock'; ?>"><?php echo $producto['stock'] > 0 ? 'En stock' : 'Sin stock'; ?></span></p>
                 <div class="producto-imagen">
-                    <img src="images/placeholder.png" alt="<?php echo $producto['nombre']; ?>">
+                    <img src="images/placeholder.svg" alt="<?php echo $producto['nombre']; ?>">
                 </div>
                 <h3 class="producto-nombre"><?php echo $producto['nombre']; ?></h3>
                 <p class="producto-descripcion"><?php echo $producto['descripcion']; ?></p>
